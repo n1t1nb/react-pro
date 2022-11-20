@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 function App() {
@@ -8,13 +8,17 @@ function App() {
   const [sdata,setSData]=useState("");
   const [sdarray,setsdarray]=useState([]);
 
+  useEffect(()=>{
+    setsdarray(darray.filter((val)=> {
+      return  val.includes(sdata);
+  }));
+  },[sdata])
+
   const handle=(e)=>{
 
     if(e.target.name=="search"){
       setSData(e.target.value)
-      setsdarray(darray.filter((val)=> {
-        return  val.includes(sdata);
-    }))
+      
   }
     else
       setData(e.target.value);
